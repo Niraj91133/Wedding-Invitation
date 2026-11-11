@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1d16">
+  <meta name="theme-color" content="#24060d">
   <title>Nameet Weds Mahek — Royal Wedding Invitation</title>
   <meta name="description" content="With joy and the blessings of our families, we invite you to celebrate the wedding union of Nameet &amp; Mahek at Gaya Ji &amp; Bodh Gaya, 23–26 January 2027.">
 
@@ -27,17 +27,49 @@
 <body>
 
   <!-- ======================================================================
-       1. HERO SECTION (ROYAL NIGHT, MONOGRAM & GOLD CALLIGRAPHY)
+       0. INTERACTIVE ROYAL ENVELOPE OPENING OVERLAY
+       ====================================================================== -->
+  <div class="envelope-overlay" id="envelope-overlay">
+    <div class="envelope-top-shlok">॥ श्री गणेशाय नमः ॥</div>
+
+    <div class="envelope-wrapper">
+      <div class="envelope-box" id="envelope-box" role="button" aria-label="Tap to open wedding invitation">
+        <!-- 3D Flap -->
+        <div class="envelope-flap"></div>
+
+        <!-- Inner Letter Card -->
+        <div class="envelope-card">
+          <span class="card-monogram">N &amp; M</span>
+          <h2 class="card-title-text">Wedding Invitation</h2>
+          <p class="card-date-text">23 — 26 JANUARY 2027</p>
+        </div>
+
+        <!-- Royal Wax Seal -->
+        <div class="envelope-seal" id="envelope-seal">
+          <div class="envelope-seal-inner">
+            <span>NM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="envelope-hint-text">
+      <span>TAP WAX SEAL TO OPEN</span>
+      <span class="hint-sub">♫ Best experienced with sound</span>
+    </div>
+  </div>
+
+  <!-- Background Falling Petals Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- ======================================================================
+       1. HERO SECTION (BURGUNDY & GOLD PALACE)
        ====================================================================== -->
   <header class="hero-luxury" id="home">
-    <div class="stardust-container" aria-hidden="true"></div>
-
-    <!-- Top Shlok -->
     <div class="hero-top-bar">
       <div class="hero-ganesh">॥ श्री गणेशाय नमः ॥</div>
     </div>
 
-    <!-- Center Monogram Crest & Names -->
     <div class="hero-content">
       <div class="hero-crest" aria-hidden="true">
         <span>N &amp; M</span>
@@ -60,7 +92,6 @@
       </div>
     </div>
 
-    <!-- Bottom Scroll Indicator -->
     <div class="hero-bottom">
       <a href="#invitation" class="hero-scroll-btn" aria-label="Scroll to formal invitation">
         <span>⌄</span>
@@ -70,7 +101,7 @@
   </header>
 
   <!-- ======================================================================
-       2. LIVE COUNTDOWN SECTION (FLOATING ROYAL CARD)
+       2. LIVE COUNTDOWN SECTION (FLOATING BURGUNDY CARD)
        ====================================================================== -->
   <div class="countdown-section">
     <div class="countdown-card fade-in-up">
@@ -110,10 +141,6 @@
          ==================================================================== -->
     <section class="invitation-section" id="invitation">
       <div class="invitation-frame fade-in-up">
-        <span class="corner-tr" aria-hidden="true">✦</span>
-        <span class="corner-bl" aria-hidden="true">✦</span>
-        <span class="corner-br" aria-hidden="true">✦</span>
-
         <span class="section-kicker">ROYAL INVITATION</span>
         <h2 class="royal-title">With Joy In Our <i>Hearts</i></h2>
 
@@ -136,7 +163,6 @@
             </p>
           </div>
 
-          <!-- Ampersand -->
           <div class="couple-ampersand-wrap" aria-hidden="true">
             <span class="couple-ampersand">&amp;</span>
           </div>
@@ -196,7 +222,7 @@
     </section>
 
     <!-- ====================================================================
-         5. CELEBRATION ITINERARY (ROYAL PALACE CARDS)
+         5. HORIZONTAL SWIPABLE ITINERARY CARDS (MOBILE RIGHT-TO-LEFT SWIPE)
          ==================================================================== -->
     <section class="itinerary-section" id="events">
       <div class="itinerary-container">
@@ -208,153 +234,147 @@
           </p>
         </div>
 
-        <!-- DAY 1: GAYA JI (Peela Chawal) -->
-        <div class="event-day-block fade-in-up">
-          <div class="event-day-header">
-            <div class="day-badge-wrap">
-              <span class="day-num-tag">SHUBH AARAMBH · GAYA JI</span>
-              <h3 class="day-date-title">23 <em>January</em> 2027</h3>
-            </div>
-          </div>
-
-          <div class="events-deck single-item">
-            <article class="event-palace-card">
-              <div>
-                <div class="event-card-icon">🪔</div>
-                <div class="event-time-badge">23 JAN · 9:30 AM</div>
-                <h4 class="event-card-title">Peela Chawal</h4>
-                <p class="event-card-desc">The sacred traditional beginning filled with auspicious blessings &amp; sweets</p>
-                <p class="event-card-venue">📍 Jain Bhawan (Dharamsala), Gaya Ji</p>
-              </div>
-              <div class="event-card-action">
-                <a href="https://www.google.com/maps/search/?api=1&query=Jain+Bhawan+Dharamsala+Gaya+Bihar" target="_blank" rel="noreferrer" class="btn-event-link">
-                  VIEW VENUE MAP ↗
-                </a>
-              </div>
-            </article>
+        <!-- Swipe Indicator Pill for Mobile -->
+        <div class="swipe-helper-bar fade-in-up">
+          <div class="swipe-hint-pill">
+            <span>👈</span> SWIPE CARDS HORIZONTALLY <span>👉</span>
           </div>
         </div>
 
-        <!-- DAY 2: BODH GAYA (Haldi, Mayra, Sangeet) -->
-        <div class="event-day-block fade-in-up">
-          <div class="event-day-header">
-            <div class="day-badge-wrap">
-              <span class="day-num-tag">DAY TWO · BODH GAYA</span>
-              <h3 class="day-date-title">25 <em>January</em> 2027</h3>
-            </div>
-          </div>
-
-          <div class="events-deck">
-            <!-- Event 1: Haldi -->
-            <article class="event-palace-card">
-              <div>
-                <div class="event-card-icon">🌼</div>
-                <div class="event-time-badge">25 JAN · 11:00 AM</div>
-                <h4 class="event-card-title">Phoolon ki Haldi</h4>
-                <p class="event-card-desc">Shower of fresh flower petals, sunshine &amp; golden celebratory hues</p>
-                <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
-              </div>
-              <div class="event-card-action">
-                <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
-                  VENUE MAP ↗
-                </a>
-              </div>
-            </article>
-
-            <!-- Event 2: Mayra -->
-            <article class="event-palace-card">
-              <div>
-                <div class="event-card-icon">🎁</div>
-                <div class="event-time-badge">25 JAN · 3:00 PM</div>
-                <h4 class="event-card-title">Mayra Magic</h4>
-                <p class="event-card-desc">A cherished bond of love, traditions and affectionate family blessings</p>
-                <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
-              </div>
-              <div class="event-card-action">
-                <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
-                  VENUE MAP ↗
-                </a>
-              </div>
-            </article>
-
-            <!-- Event 3: Sangeet -->
-            <article class="event-palace-card">
-              <div>
-                <div class="event-card-icon">💃</div>
-                <div class="event-time-badge">25 JAN · 7:30 PM</div>
-                <h4 class="event-card-title">Sangeet</h4>
-                <p class="event-card-desc">Sham Shandaar — An evening of music, dance beats and unforgettable memories</p>
-                <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
-              </div>
-              <div class="event-card-action">
-                <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
-                  VENUE MAP ↗
-                </a>
-              </div>
-            </article>
-          </div>
+        <!-- Filter Tabs -->
+        <div class="event-filter-tabs fade-in-up">
+          <button type="button" class="filter-tab-btn active" data-day="all">ALL EVENTS (7)</button>
+          <button type="button" class="filter-tab-btn" data-day="23">23 JAN · GAYA JI</button>
+          <button type="button" class="filter-tab-btn" data-day="25">25 JAN · BODH GAYA</button>
+          <button type="button" class="filter-tab-btn" data-day="26">26 JAN · WEDDING</button>
         </div>
 
-        <!-- DAY 3: BODH GAYA (Baraat, Varmala, Phere) -->
-        <div class="event-day-block fade-in-up">
-          <div class="event-day-header">
-            <div class="day-badge-wrap">
-              <span class="day-num-tag">DAY THREE · THE WEDDING</span>
-              <h3 class="day-date-title">26 <em>January</em> 2027</h3>
+        <!-- HORIZONTAL SWIPABLE TRACK -->
+        <div class="events-horizontal-track" id="events-track">
+          
+          <!-- Card 1: Peela Chawal (23 Jan) -->
+          <article class="event-palace-card" data-day="23">
+            <div>
+              <span class="event-day-tag">DAY ONE · GAYA JI</span>
+              <div class="event-card-icon">🪔</div>
+              <div class="event-time-badge">23 JAN · 9:30 AM</div>
+              <h4 class="event-card-title">Peela Chawal</h4>
+              <p class="event-card-desc">The sacred traditional beginning filled with auspicious blessings, rice &amp; sweets</p>
+              <p class="event-card-venue">📍 Jain Bhawan (Dharamsala), Gaya Ji</p>
             </div>
-          </div>
+            <div class="event-card-action">
+              <a href="https://www.google.com/maps/search/?api=1&query=Jain+Bhawan+Dharamsala+Gaya+Bihar" target="_blank" rel="noreferrer" class="btn-event-link">
+                VIEW VENUE MAP ↗
+              </a>
+            </div>
+          </article>
 
-          <div class="events-deck">
-            <!-- Event 1: Baraat -->
-            <article class="event-palace-card">
-              <div>
-                <div class="event-card-icon">🎺</div>
-                <div class="event-time-badge">26 JAN · 1:00 PM</div>
-                <h4 class="event-card-title">The Baraat</h4>
-                <p class="event-card-desc">The royal wedding procession with dhol beats &amp; celebratory fanfare</p>
-                <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
-              </div>
-              <div class="event-card-action">
-                <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
-                  VENUE MAP ↗
-                </a>
-              </div>
-            </article>
+          <!-- Card 2: Phoolon ki Haldi (25 Jan) -->
+          <article class="event-palace-card" data-day="25">
+            <div>
+              <span class="event-day-tag">DAY TWO · BODH GAYA</span>
+              <div class="event-card-icon">🌼</div>
+              <div class="event-time-badge">25 JAN · 11:00 AM</div>
+              <h4 class="event-card-title">Phoolon ki Haldi</h4>
+              <p class="event-card-desc">Shower of fresh fragrant petals, sunshine &amp; golden celebratory hues</p>
+              <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
+            </div>
+            <div class="event-card-action">
+              <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
+                VIEW VENUE MAP ↗
+              </a>
+            </div>
+          </article>
 
-            <!-- Event 2: Varmala -->
-            <article class="event-palace-card">
-              <div>
-                <div class="event-card-icon">🌺</div>
-                <div class="event-time-badge">26 JAN · 4:30 PM</div>
-                <h4 class="event-card-title">Sundowner Varmala</h4>
-                <p class="event-card-desc">Exchange of wedding garlands under sunset golden hour, followed by reception</p>
-                <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
-              </div>
-              <div class="event-card-action">
-                <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
-                  VENUE MAP ↗
-                </a>
-              </div>
-            </article>
+          <!-- Card 3: Mayra Magic (25 Jan) -->
+          <article class="event-palace-card" data-day="25">
+            <div>
+              <span class="event-day-tag">DAY TWO · BODH GAYA</span>
+              <div class="event-card-icon">🎁</div>
+              <div class="event-time-badge">25 JAN · 3:00 PM</div>
+              <h4 class="event-card-title">Mayra Magic</h4>
+              <p class="event-card-desc">A cherished bond of love, traditions and affectionate family blessings</p>
+              <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
+            </div>
+            <div class="event-card-action">
+              <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
+                VIEW VENUE MAP ↗
+              </a>
+            </div>
+          </article>
 
-            <!-- Event 3: Phere -->
-            <article class="event-palace-card">
-              <div>
-                <div class="event-card-icon">🔥</div>
-                <div class="event-time-badge">26 JAN · 7:30 PM</div>
-                <h4 class="event-card-title">Phere</h4>
-                <p class="event-card-desc">The Seven sacred vows and promises around the holy fire for a lifetime of oneness</p>
-                <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
-              </div>
-              <div class="event-card-action">
-                <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
-                  VENUE MAP ↗
-                </a>
-              </div>
-            </article>
-          </div>
+          <!-- Card 4: Sangeet (25 Jan) -->
+          <article class="event-palace-card" data-day="25">
+            <div>
+              <span class="event-day-tag">DAY TWO · BODH GAYA</span>
+              <div class="event-card-icon">💃</div>
+              <div class="event-time-badge">25 JAN · 7:30 PM</div>
+              <h4 class="event-card-title">Sangeet</h4>
+              <p class="event-card-desc">Sham Shandaar — An evening of music, dance beats and unforgettable memories</p>
+              <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
+            </div>
+            <div class="event-card-action">
+              <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
+                VIEW VENUE MAP ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 5: The Baraat (26 Jan) -->
+          <article class="event-palace-card" data-day="26">
+            <div>
+              <span class="event-day-tag">DAY THREE · BODH GAYA</span>
+              <div class="event-card-icon">🎺</div>
+              <div class="event-time-badge">26 JAN · 1:00 PM</div>
+              <h4 class="event-card-title">The Baraat</h4>
+              <p class="event-card-desc">The royal wedding procession with dhol beats &amp; celebratory fanfare</p>
+              <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
+            </div>
+            <div class="event-card-action">
+              <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
+                VIEW VENUE MAP ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 6: Sundowner Varmala (26 Jan) -->
+          <article class="event-palace-card" data-day="26">
+            <div>
+              <span class="event-day-tag">DAY THREE · BODH GAYA</span>
+              <div class="event-card-icon">🌺</div>
+              <div class="event-time-badge">26 JAN · 4:30 PM</div>
+              <h4 class="event-card-title">Sundowner Varmala</h4>
+              <p class="event-card-desc">Exchange of wedding garlands under sunset golden hour, followed by reception</p>
+              <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
+            </div>
+            <div class="event-card-action">
+              <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
+                VIEW VENUE MAP ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 7: Phere (26 Jan) -->
+          <article class="event-palace-card" data-day="26">
+            <div>
+              <span class="event-day-tag">DAY THREE · BODH GAYA</span>
+              <div class="event-card-icon">🔥</div>
+              <div class="event-time-badge">26 JAN · 7:30 PM</div>
+              <h4 class="event-card-title">Phere</h4>
+              <p class="event-card-desc">The Seven sacred vows and promises around the holy fire for a lifetime of oneness</p>
+              <p class="event-card-venue">📍 Nirvana Resort, Bodh Gaya</p>
+            </div>
+            <div class="event-card-action">
+              <a href="https://www.google.com/maps/search/?api=1&query=Nirvana+Resort+Bodh+Gaya" target="_blank" rel="noreferrer" class="btn-event-link">
+                VIEW VENUE MAP ↗
+              </a>
+            </div>
+          </article>
+
         </div>
 
+        <!-- Dots Indicator -->
+        <div class="itinerary-dots-wrap" id="itinerary-dots"></div>
       </div>
     </section>
 
@@ -406,17 +426,16 @@
     </section>
 
     <!-- ====================================================================
-         7. PHOTO MOMENTS GALLERY (EDITORIAL CARDS)
+         7. PHOTO MOMENTS GALLERY (EDITORIAL CARDS & MOBILE SWIPE)
          ==================================================================== -->
     <section class="gallery-section-luxury">
-      <div style="text-align: center;" class="fade-in-up">
+      <div style="text-align: center; padding: 0 20px;" class="fade-in-up">
         <span class="section-kicker" style="color: var(--gold-light);">MEMORIES &amp; SMILES</span>
         <h2 class="royal-title">Moments Of <i>Love</i></h2>
         <p class="royal-subtitle">A glimpse into their shared laughter, companionship, and journey ahead.</p>
       </div>
 
       <div class="gallery-editorial-grid fade-in-up">
-        <!-- Photo 1 -->
         <div class="gallery-photo-card">
           <img src="photo_1.jpg" alt="Nameet and Mahek portrait with sunglasses">
           <div class="gallery-photo-overlay">
@@ -424,7 +443,6 @@
           </div>
         </div>
 
-        <!-- Photo 2 -->
         <div class="gallery-photo-card">
           <img src="photo_2.jpg" alt="Nameet and Mahek walking hand in hand">
           <div class="gallery-photo-overlay">
@@ -432,7 +450,6 @@
           </div>
         </div>
 
-        <!-- Photo 3 -->
         <div class="gallery-photo-card">
           <img src="photo_3.jpg" alt="Nameet and Mahek royal ethnic attire">
           <div class="gallery-photo-overlay">
@@ -471,7 +488,6 @@
             </div>
           </div>
 
-          <!-- Divider -->
           <div class="family-vertical-divider" aria-hidden="true"></div>
 
           <!-- 2. Bride's Family -->
@@ -537,7 +553,7 @@
       <span></span>
       <span></span>
     </div>
-    <span class="music-dock-label">PLAY MUSIC</span>
+    <span class="music-dock-label">MUSIC</span>
   </div>
 
   <audio id="wedding-music" preload="auto" loop src="tumhi-dekho-naa-sitar-lofi.mp3"></audio>
