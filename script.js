@@ -70,11 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let ctx = null;
   let petals = [];
   const petalColors = [
-    { r: 212, g: 175, b: 55, a: 0.8 },  // Gold
-    { r: 245, g: 180, b: 190, a: 0.85 }, // Rose Pink
-    { r: 180, g: 30, b: 55, a: 0.75 },  // Royal Crimson
-    { r: 250, g: 215, b: 220, a: 0.9 }, // Soft Blush
-    { r: 232, g: 200, b: 114, a: 0.75 } // Soft Gold
+    { r: 185, g: 30, b: 55, r2: 150, g2: 20, b2: 40, r3: 120, g3: 15, b3: 30 }, // Deep Royal Rose
+    { r: 215, g: 65, b: 95, r2: 185, g2: 40, b2: 70, r3: 145, g3: 25, b3: 50 }, // Soft Crimson
+    { r: 235, g: 110, b: 135, r2: 205, g2: 75, b2: 100, r3: 165, g3: 45, b3: 70 }, // Blush Rose
+    { r: 212, g: 175, b: 55, r2: 180, g2: 140, b2: 35, r3: 140, g3: 105, b3: 20 }  // Antique Gold Accent
   ];
 
   if (canvas) {
@@ -94,37 +93,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
       reset(isBurst = false) {
         if (isBurst) {
-          this.x = canvas.width / 2 + (Math.random() - 0.5) * 150;
-          this.y = canvas.height / 2 + (Math.random() - 0.5) * 150;
-          this.speedY = -(Math.random() * 6 + 2);
-          this.speedX = (Math.random() - 0.5) * 8;
+          this.x = canvas.width / 2 + (Math.random() - 0.5) * 120;
+          this.y = canvas.height / 2 + (Math.random() - 0.5) * 120;
+          this.speedY = -(Math.random() * 2 + 1);
+          this.speedX = (Math.random() - 0.5) * 3;
         } else {
           this.x = Math.random() * canvas.width;
-          this.y = -20 - Math.random() * 50;
-          this.speedY = Math.random() * 1.5 + 1.2;
-          this.speedX = Math.sin(Math.random() * Math.PI) * 1.2;
+          this.y = -15 - Math.random() * 40;
+          // Smooth and slow floating speed
+          this.speedY = Math.random() * 0.35 + 0.35;
+          this.speedX = (Math.random() - 0.5) * 0.4;
         }
 
-        this.size = Math.random() * 12 + 10;
+        // Small, delicate rose petal dimensions
+        this.width = Math.random() * 3 + 6;   // 6px - 9px
+        this.height = Math.random() * 4 + 9;  // 9px - 13px
+
         this.angle = Math.random() * Math.PI * 2;
-        this.angularSpeed = (Math.random() - 0.5) * 0.04;
-        this.swaySpeed = Math.random() * 0.02 + 0.01;
+        this.angularSpeed = (Math.random() - 0.5) * 0.015;
+
+        // 3D flip rotation (tumbling in air)
+        this.flip = Math.random() * Math.PI * 2;
+        this.flipSpeed = Math.random() * 0.018 + 0.008;
+
+        // Gentle horizontal sway
+        this.swaySpeed = Math.random() * 0.008 + 0.005;
         this.swayOffset = Math.random() * Math.PI * 2;
+
         this.color = petalColors[Math.floor(Math.random() * petalColors.length)];
-        this.opacity = Math.random() * 0.4 + 0.6;
+        this.opacity = Math.random() * 0.3 + 0.65;
       }
 
       update() {
         this.y += this.speedY;
-        this.x += Math.sin(this.y * this.swaySpeed + this.swayOffset) * 1.5 + this.speedX * 0.2;
+        this.x += Math.sin(this.y * this.swaySpeed + this.swayOffset) * 0.8 + this.speedX;
         this.angle += this.angularSpeed;
+        this.flip += this.flipSpeed;
 
-        if (this.speedY < 1.2) {
-          this.speedY += 0.15; // Gravity pull after burst
+        if (this.speedY < 0.45) {
+          this.speedY += 0.04;
         }
 
-        // Recycle petal when it falls below screen
-        if (this.y > canvas.height + 25 || this.x < -30 || this.x > canvas.width + 30) {
+        // Recycle petal when it exits screen
+        if (this.y > canvas.height + 20 || this.x < -20 || this.x > canvas.width + 20) {
           this.reset(false);
         }
       }
@@ -134,26 +145,32 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
+        ctx.scale(Math.cos(this.flip), 1); // Realistic 3D flutter effect
+
         ctx.beginPath();
+        // Realistic curved rose petal shape (not a heart)
+        ctx.moveTo(0, -this.height * 0.5);
+        ctx.bezierCurveTo(this.width * 0.65, -this.height * 0.4, this.width * 0.55, this.height * 0.4, 0, this.height * 0.5);
+        ctx.bezierCurveTo(-this.width * 0.55, this.height * 0.4, -this.width * 0.65, -this.height * 0.4, 0, -this.height * 0.5);
 
-        // Organic rose petal curve
-        ctx.moveTo(0, 0);
-        ctx.bezierCurveTo(-this.size / 2, -this.size / 2, -this.size, this.size / 3, 0, this.size);
-        ctx.bezierCurveTo(this.size, this.size / 3, this.size / 2, -this.size / 2, 0, 0);
+        const grad = ctx.createLinearGradient(0, -this.height * 0.5, 0, this.height * 0.5);
+        grad.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity})`);
+        grad.addColorStop(0.7, `rgba(${this.color.r2}, ${this.color.g2}, ${this.color.b2}, ${this.opacity * 0.85})`);
+        grad.addColorStop(1, `rgba(${this.color.r3}, ${this.color.g3}, ${this.color.b3}, ${this.opacity * 0.6})`);
 
-        ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity})`;
-        ctx.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0.3)`;
-        ctx.shadowBlur = 4;
+        ctx.fillStyle = grad;
+        ctx.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0.25)`;
+        ctx.shadowBlur = 3;
         ctx.fill();
         ctx.restore();
       }
     }
 
-    // Populate initial petals
-    const petalCount = window.innerWidth < 600 ? 25 : 45;
+    // Elegant minimal quantity: 10 on mobile, 15 on desktop
+    const petalCount = window.innerWidth < 600 ? 10 : 15;
     for (let i = 0; i < petalCount; i++) {
       const p = new Petal(false);
-      p.y = Math.random() * canvas.height; // Distribute across screen initially
+      p.y = Math.random() * canvas.height;
       petals.push(p);
     }
 
@@ -172,7 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function triggerPetalBurst() {
     if (!ctx) return;
-    for (let i = 0; i < 30; i++) {
+    // Minimal, soft celebration burst: only 6 petals
+    for (let i = 0; i < 6; i++) {
       petals.push(new Petal(true));
     }
   }
