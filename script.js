@@ -44,6 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (envelopeBox) {
     envelopeBox.addEventListener('click', openEnvelope);
   }
+  const envelopeWrapper = document.querySelector('.envelope-wrapper');
+  if (envelopeWrapper && envelopeWrapper !== envelopeBox) {
+    envelopeWrapper.addEventListener('click', openEnvelope);
+  }
 
   // 2. Continuous Falling Rose & Gold Petals Engine (Canvas)
   const canvas = document.getElementById('petals-canvas');
@@ -200,6 +204,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const dots = dotsContainer.querySelectorAll('.itinerary-dot');
+
+    // Deck Navigation Arrows (Prev / Next)
+    const prevEventBtn = document.getElementById('prev-event-btn');
+    const nextEventBtn = document.getElementById('next-event-btn');
+    if (prevEventBtn && nextEventBtn) {
+      prevEventBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -320, behavior: 'smooth' });
+      });
+      nextEventBtn.addEventListener('click', () => {
+        track.scrollBy({ left: 320, behavior: 'smooth' });
+      });
+    }
 
     // Update active dot on scroll
     track.addEventListener('scroll', () => {

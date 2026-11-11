@@ -957,9 +957,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 24px;
   padding: 0 20px;
+}
+
+.deck-arrow-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-primary);
+  background: rgba(45, 8, 16, 0.7);
+  color: var(--gold-light);
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.deck-arrow-btn:hover {
+  background: var(--gold-primary);
+  color: var(--royal-wine-dark);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
 }
 
 .swipe-hint-pill {
