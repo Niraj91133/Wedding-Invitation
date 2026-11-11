@@ -32,16 +32,20 @@
   <div class="envelope-overlay" id="envelope-overlay">
     <div class="envelope-top-shlok">॥ श्री गणेशाय नमः ॥</div>
 
-    <div class="envelope-wrapper">
+    <div class="envelope-wrapper" id="envelope-wrapper">
       <div class="envelope-box" id="envelope-box" role="button" aria-label="Tap to open wedding invitation">
         <!-- 3D Flap -->
         <div class="envelope-flap"></div>
 
         <!-- Inner Letter Card -->
         <div class="envelope-card">
-          <span class="card-monogram">N &amp; M</span>
-          <h2 class="card-title-text">Wedding Invitation</h2>
-          <p class="card-date-text">23 — 26 JANUARY 2027</p>
+          <div class="card-shlok">॥ श्री गणेशाय नमः ॥</div>
+          <div class="card-crest">N &amp; M</div>
+          <h2 class="card-couple-names">Nameet <i>&amp;</i> Mahek</h2>
+          <p class="card-invite-tag">WEDDING INVITATION</p>
+          <div class="card-divider"><span>✦</span></div>
+          <p class="card-dates">23 — 26 JANUARY 2027</p>
+          <p class="card-places">GAYA JI &amp; BODH GAYA</p>
         </div>
 
         <!-- Royal Wax Seal -->
@@ -55,7 +59,8 @@
 
     <div class="envelope-hint-text">
       <span>TAP WAX SEAL TO OPEN</span>
-      <span class="hint-sub">♫ Best experienced with sound</span>
+      <span class="hint-sub">♫ Tap anywhere to open with music</span>
+      <button type="button" class="envelope-skip-btn" id="envelope-skip-btn">OPEN INVITATION ➔</button>
     </div>
   </div>
 

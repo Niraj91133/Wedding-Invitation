@@ -8,14 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Interactive Royal Envelope Opening
   const envelopeOverlay = document.getElementById('envelope-overlay');
   const envelopeBox = document.getElementById('envelope-box');
+  const envelopeSeal = document.getElementById('envelope-seal');
+  const envelopeSkipBtn = document.getElementById('envelope-skip-btn');
   const audio = document.getElementById('wedding-music');
   const musicDock = document.getElementById('music-dock');
   const musicIcon = document.getElementById('music-icon-state');
 
   let hasOpened = false;
 
-  const openEnvelope = () => {
-    if (hasOpened) return;
+  const openEnvelope = (e) => {
+    if (hasOpened) {
+      // If user taps again while animating, dismiss immediately
+      if (envelopeOverlay) {
+        envelopeOverlay.classList.add('hidden-completely');
+      }
+      return;
+    }
     hasOpened = true;
 
     if (envelopeOverlay) {
@@ -34,19 +42,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger celebratory petal burst
     triggerPetalBurst();
 
+    // Fade out overlay after the card reveals
     setTimeout(() => {
       if (envelopeOverlay) {
-        envelopeOverlay.classList.add('opened');
+        envelopeOverlay.classList.add('fade-out');
       }
-    }, 1100);
+    }, 1000);
+
+    // Completely remove overlay from DOM
+    setTimeout(() => {
+      if (envelopeOverlay) {
+        envelopeOverlay.classList.add('hidden-completely');
+      }
+    }, 1700);
   };
 
-  if (envelopeBox) {
-    envelopeBox.addEventListener('click', openEnvelope);
-  }
-  const envelopeWrapper = document.querySelector('.envelope-wrapper');
-  if (envelopeWrapper && envelopeWrapper !== envelopeBox) {
-    envelopeWrapper.addEventListener('click', openEnvelope);
+  if (envelopeSeal) envelopeSeal.addEventListener('click', openEnvelope);
+  if (envelopeBox) envelopeBox.addEventListener('click', openEnvelope);
+  if (envelopeSkipBtn) envelopeSkipBtn.addEventListener('click', openEnvelope);
+  if (envelopeOverlay) {
+    envelopeOverlay.addEventListener('click', openEnvelope);
+    envelopeOverlay.addEventListener('touchend', openEnvelope, { passive: true });
   }
 
   // 2. Continuous Falling Rose & Gold Petals Engine (Canvas)
