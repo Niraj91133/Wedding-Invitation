@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (envelopeOverlay) {
         envelopeOverlay.classList.add('hidden-completely');
       }
+      document.querySelectorAll('.fade-in-up').forEach((el) => el.classList.add('visible'));
     }, 1700);
   };
 
