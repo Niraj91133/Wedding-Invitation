@@ -28,7 +28,7 @@ A digital wedding invitation web experience designed for **Nameet & Mahek**, fea
 ## ✨ Features
 
 - **Responsive Design**: Flawless layout on Mobile, Tablet, and Desktop.
-- **Interactive Audio**: Floating background music player with serene sitar lofi melodies.
+- **Interactive Audio**: Floating background music player with sacred Navkar Mantra chant.
 - **Photo Moments**: Photo gallery showcase celebrating the couple.
 - **Live Countdown**: Real-time ticker counting down to the celebrations.
 - **One-Click Navigation**: Direct Google Maps links for all venues in Gaya Ji & Bodh Gaya.
